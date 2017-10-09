@@ -17,12 +17,27 @@ class Model {
         return this._isXTurn; 
     }
     
+    getAllBoardStates() {
+        return this._allBoardStates; 
+    }
+    
+    setBoardState(i) {
+        this._curBoardState = this._allBoardStates[i]; 
+        this._allBoardStates = this._allBoardStates.slice(0, i+1); 
+        this._isXTurn = i % 2 === 0; 
+        this.triggerChange(); 
+    }
+    
     setMove(index, val) {
         let newBoardState = this._curBoardState.slice(); 
         this._allBoardStates.push(newBoardState); 
         this._curBoardState = newBoardState; 
         this._curBoardState[index] = val;
         this.toggleTurn(); 
+        this.triggerChange(); 
+    }
+    
+    triggerChange() {
         this._onChangeHandler(); 
     }
     
@@ -30,6 +45,29 @@ class Model {
         return this._curBoardState; 
     }
 }
+
+
+class Game {
+    
+    constructor(model) {
+        this.model = model; 
+    }
+    
+    render() {
+        
+        let gameDiv = document.createElement('div');
+        gameDiv.className = 'game';
+        
+        let board = new Board(this.model); 
+        gameDiv.appendChild(board.render()); 
+        
+        let history = new History(this.model);
+        gameDiv.appendChild(history.render())
+        return gameDiv; 
+    } 
+    
+}
+
 
 /*
     * represent History as an ordered list 
@@ -47,26 +85,44 @@ class History {
         var listOfStates = document.createElement('ol'); 
         historyDiv.appendChild(listOfStates); 
         
-        // for ()
+        let allBoardStates = this.model.getAllBoardStates(); 
+        for (let i = 0; i < allBoardStates.length; i++){
+            let historyListItem = new HistoryItem(this.model, i); 
+            historyDiv.appendChild(historyListItem.render()); 
+        }
+        
+        return historyDiv; 
     }
 }
 
-class Game {
-    
-    constructor(model) {
+
+
+class HistoryItem {
+    constructor(model, moveNumber) {
         this.model = model; 
-        this.board = new Board(this.model); 
+        this.moveNumber = moveNumber; 
     }
     
-    render() {
-        
-        var gameDiv = document.createElement('div');
-        gameDiv.className = 'game';
-        gameDiv.appendChild(this.board.render()); 
-        return gameDiv; 
-    } 
+    handleClick(e) {
+        this.model.setBoardState(this.moveNumber); 
+    }
     
+    assignClickHandler(historyListItem) {
+        historyListItem.addEventListener('click', this.handleClick.bind(this));
+    
+    }
+
+    
+    render() {
+        var historyListItem = document.createElement('li');
+        historyListItem.innerHTML = "Go back to move " + this.moveNumber; 
+        this.assignClickHandler(historyListItem);  
+        return historyListItem; 
+    }
 }
+
+
+
 
 
 
