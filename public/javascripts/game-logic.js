@@ -108,7 +108,7 @@ class HistoryItem {
     }
     
     assignClickHandler(historyListItem) {
-        historyListItem.addEventListener('click', this.handleClick.bind(this));
+        historyListItem.addEventListener('click', (e) => this.handleClick(e));
     
     }
 
@@ -214,7 +214,7 @@ class Square {
     }
     
     assignClickHandler(squareButton) {
-        squareButton.addEventListener('click', this.handleSquareClick.bind(this));
+        squareButton.addEventListener('click', (e) => this.handleSquareClick(e) );
     
     }
 
