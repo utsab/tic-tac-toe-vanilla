@@ -88,7 +88,7 @@ class History {
         let allBoardStates = this.model.getAllBoardStates(); 
         for (let i = 0; i < allBoardStates.length; i++){
             let historyListItem = new HistoryItem(this.model, i); 
-            historyDiv.appendChild(historyListItem.render()); 
+            listOfStates.appendChild(historyListItem.render()); 
         }
         
         return historyDiv; 
