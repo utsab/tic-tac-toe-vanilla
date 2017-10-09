@@ -78,11 +78,26 @@ class Board {
         this.model = model; 
     }
     
+    
+    isAvailableMove() {
+        let squareVals = this.model.getSquareValues(); 
+        
+        for (let i = 0; i < squareVals.length; i++) {
+            if (squareVals[i] === null) {
+                return true; 
+            }
+        }
+        
+        return false; 
+    }
+    
     getGameStatus() {
         var winner = calculateWinner(this.model.getSquareValues()); 
 
         if (winner) {
             return "Winner: " + winner; 
+        } else if (!this.isAvailableMove()) {
+            return "Cats Game"; 
         } else {
             return  "Next player: " + (this.model.getIsXTurn() ? "X" : "O"); 
         }
