@@ -3,7 +3,9 @@
 class Model {
     constructor(onChangeHandler) {
         this._isXTurn = true; 
-        this._squareValues = Array(9).fill(null); 
+        this._allBoardStates = []; 
+        this._curBoardState = Array(9).fill(null); 
+        this._allBoardStates.push(this._curBoardState); 
         this._onChangeHandler = onChangeHandler; 
     }
     
@@ -16,24 +18,38 @@ class Model {
     }
     
     setMove(index, val) {
-        this._squareValues[index] = val;
+        let newBoardState = this._curBoardState.slice(); 
+        this._allBoardStates.push(newBoardState); 
+        this._curBoardState = newBoardState; 
+        this._curBoardState[index] = val;
         this.toggleTurn(); 
         this._onChangeHandler(); 
     }
     
     getSquareValues() {
-        return this._squareValues; 
+        return this._curBoardState; 
     }
 }
 
- 
-
 /*
-Plan: 
-*  Have a Game class
-* Board class 
-
+    * represent History as an ordered list 
+    * each ol is clickable.  
+    * when clicked, should change the state of the board 
 */
+class History {
+    constructor(model) {
+        this.model = model; 
+    }
+    
+    render() {
+        var historyDiv = document.createElement('div');
+        historyDiv.className = "game-info"; 
+        var listOfStates = document.createElement('ol'); 
+        historyDiv.appendChild(listOfStates); 
+        
+        // for ()
+    }
+}
 
 class Game {
     
@@ -51,6 +67,7 @@ class Game {
     } 
     
 }
+
 
 
 
