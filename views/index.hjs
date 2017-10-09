@@ -10,19 +10,19 @@
         <div class="game-board">
           <div class="status"> </div>
           <div class="board-row"> 
-            <button class="square"></button>
-            <button class="square"></button>
-            <button class="square"></button>
+            <button class="square" data-position="0"></button>
+            <button class="square" data-position="1"></button>
+            <button class="square" data-position="2"></button>
           </div>
           <div class="board-row"> 
-            <button class="square"></button>
-            <button class="square"></button>
-            <button class="square"></button> 
+            <button class="square" data-position="3"></button>
+            <button class="square" data-position="4"></button>
+            <button class="square" data-position="5"></button> 
           </div>
           <div class="board-row"> 
-            <button class="square"></button>
-            <button class="square"></button>
-            <button class="square"></button>
+            <button class="square" data-position="6"></button>
+            <button class="square" data-position="7"></button>
+            <button class="square" data-position="8"></button>
           </div>
         </div>
         <div class="game-info">

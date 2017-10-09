@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     // iterate over elements and add a click handler
     
     function handleSquareClick(e) {
-        alert("clicked on square!"); 
+        alert("clicked on square: " + e.target.dataset.position); 
     }
     
  
