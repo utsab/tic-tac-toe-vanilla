@@ -3,6 +3,7 @@
   <head>
     <title>{{ title }}</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    
   </head>
   <body>
     <div className="game">
@@ -16,7 +17,7 @@
           <div class="board-row"> 
             <button class="square"></button>
             <button class="square"></button>
-            <button class="square"></button>
+            <button class="square"></button> 
           </div>
           <div class="board-row"> 
             <button class="square"></button>
@@ -31,6 +32,6 @@
     </div>
     
     
-     <script type="text/javascript" src="/javascripts/game-logic.js" />
+     <script type="text/javascript" src="/javascripts/game-logic.js"></script>
   </body>
 </html>
