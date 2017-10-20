@@ -55,3 +55,16 @@ ol li {
 .game-info {
   margin-left: 20px;
 }
+
+/* Player Styles */
+.player {
+  font-size: 15px;
+}
+
+.x {
+  color: red;
+}
+
+.o {
+  color: blue;
+}
