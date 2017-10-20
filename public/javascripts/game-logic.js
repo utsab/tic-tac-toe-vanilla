@@ -115,7 +115,8 @@ class HistoryItem {
     
     render() {
         var historyListItem = document.createElement('li');
-        historyListItem.innerHTML = "Go back to move " + this.moveNumber; 
+        //var playerClass = ....; 
+        //historyListItem.innerHTML = "<span class='player Go back to move " + this.moveNumber; 
         this.assignClickHandler(historyListItem);  
         return historyListItem; 
     }
